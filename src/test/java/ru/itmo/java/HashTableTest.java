@@ -30,7 +30,7 @@ public class HashTableTest {
         int numberOfKeys = 100;
 
         invoke(
-                new HashTable(50, 0.3f), // initialCapacity, loadFactor
+                new HashTable<>(50, 0.3f), // initialCapacity, loadFactor
                 new OperationPercentageProfile(90),
                 new KeysProvider(numberOfKeys, () -> random.nextInt(numberOfKeys)),
                 defaultIntValuesSupplier,
@@ -43,7 +43,7 @@ public class HashTableTest {
         int numberOfKeys = 10_000;
 
         invoke(
-                new HashTable(1000), // initialCapacity
+                new HashTable<>(1000), // initialCapacity
                 new OperationPercentageProfile(90),
                 new KeysProvider(numberOfKeys, () -> random.nextInt(numberOfKeys)),
                 defaultIntValuesSupplier,
@@ -56,7 +56,7 @@ public class HashTableTest {
         int numberOfKeys = 100;
 
         invoke(
-                new HashTable(50, 0.3f), // initialCapacity, loadFactor
+                new HashTable<>(50, 0.3f), // initialCapacity, loadFactor
                 new OperationPercentageProfile(55),
                 new KeysProvider(numberOfKeys, this::generateRandomString),
                 this::generateRandomString,
@@ -70,7 +70,7 @@ public class HashTableTest {
         int numberOfKeys = 100_000;
 
         invoke(
-                new HashTable(1000), // initialCapacity
+                new HashTable<>(1000), // initialCapacity
                 new OperationPercentageProfile(55),
                 new KeysProvider(numberOfKeys, this::generateRandomString),
                 defaultIntValuesSupplier,
@@ -78,7 +78,7 @@ public class HashTableTest {
         );
     }
 
-    private void invoke(Map<Object, Object> testInstance,
+    private void invoke(HashTable<Object, Object> testInstance,
                         OperationPercentageProfile operationPercentageProfile,
                         KeysProvider keysProvider,
                         Supplier<?> valuesSupplier,
