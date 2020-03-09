@@ -89,14 +89,6 @@ public final class HashTable<K, V> {
         return value;
     }
 
-    public void setThreshold(final int threshold) {
-        if (threshold < 0 || threshold >= table.length) {
-            throw new IllegalArgumentException("Invalid threshold");
-        }
-
-        this.threshold = threshold;
-    }
-
     public boolean containsKey(final K key) {
         return table[findIndex(hash(key), key)] != null;
     }
