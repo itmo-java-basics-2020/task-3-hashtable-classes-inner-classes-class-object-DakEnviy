@@ -49,15 +49,15 @@ public final class HashTable<K, V> {
     }
 
     public V put(final K key, final V value) {
-        if (size >= MAX_CAPACITY - 1) {
-            throw new RuntimeException("Maximum size of hash-table has been reached");
-        }
-
         final int hash = hash(key);
         final int idx = findIndex(hash, key);
 
         if (table[idx] != null) {
             return table[idx].setValue(value);
+        }
+
+        if (size >= MAX_CAPACITY - 1) {
+            throw new RuntimeException("Maximum size of hash-table has been reached");
         }
 
         table[idx] = new Entry<>(hash, key, value);
