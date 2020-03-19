@@ -17,7 +17,7 @@ public final class HashTable<K, V> {
     private int size;
     private int threshold;
 
-    public HashTable(int initialCapacity, final float loadFactor) {
+    public HashTable(final int initialCapacity, final float loadFactor) {
         if (initialCapacity <= 0) {
             throw new IllegalArgumentException("Initial capacity must be positive");
         }
@@ -26,18 +26,16 @@ public final class HashTable<K, V> {
             throw new IllegalArgumentException("Invalid load factor");
         }
 
-        if (initialCapacity >= MAX_CAPACITY) {
-            initialCapacity = MAX_CAPACITY;
-        }
+        final int cap = Math.min(initialCapacity, MAX_CAPACITY);
 
         //noinspection unchecked
-        this.table = new Entry[initialCapacity];
+        this.table = new Entry[cap];
         this.size = 0;
 
         this.loadFactor = loadFactor;
-        this.threshold = initialCapacity == MAX_CAPACITY
+        this.threshold = cap == MAX_CAPACITY
             ? MAX_CAPACITY
-            : (int) (initialCapacity * loadFactor);
+            : (int) (cap * loadFactor);
     }
 
     public HashTable(final int initialCapacity) {
